@@ -1,0 +1,19 @@
+<a [routerLink]="['/']">
+  <h1>Shopping List</h1>
+</a>
+<div id="top-buttons">
+  <button (click)="sendEmail()">
+    <i class="material-icons">mail</i>
+  </button>
+  <button *ngIf="isLoggedIn" type="button" (click)="logout()">
+    <i class="material-icons">logout</i>
+  </button>
+  <button *ngIf="!isLoggedIn" type="button" (click)="login()">
+    <i class="material-icons">login</i>
+  </button>
+</div>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->

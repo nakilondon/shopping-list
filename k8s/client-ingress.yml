@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/issuer: letsencrypt-http01-prod
+  name: client
+  namespace: shopping-list
+spec:    
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - shopping-list.lewes.family
+    secretName: cert-shopping-list-lewes-family-key-pair
+  rules:
+  - host: shopping-list.lewes.family
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: client
+            port:
+              number: 80

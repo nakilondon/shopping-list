@@ -1,0 +1,37 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  datasource:
+    url: db_url
+    username: db_user
+    password: db_password
+  mail:
+    host: stmp_host
+    port: 587
+    username: stmp_username 
+    password: stmp_password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: oauth_url
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+jwt:
+  auth:
+    converter:
+      resourceid: shopping-list-app
+      principal-attribute: preferred_username

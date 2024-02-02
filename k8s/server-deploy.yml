@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: shopping-list
+  name: server
+  labels:
+    app: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - name: server
+        image: image_repo:5000/shopping-list/server:1.0
+        env:
+        - name: SPRING_MAIL_USERNAME
+          value: email
+        - name: SPRING_MAIL_PASSWORD
+          value: email_password
+        - name: JWT_AUTH_CONVERTER_RESOURCEID
+          value: shopping-list-app
+        ports:
+        - containerPort: 8080
+ 
